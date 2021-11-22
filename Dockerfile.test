@@ -1,0 +1,11 @@
+FROM golang:alpine as build
+
+WORKDIR /ecommerce_app_test
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY . .
+
+CMD CGO_ENABLED=0 go test -v  ./...
