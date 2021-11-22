@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/Lgdev07/ecommerce_app/apps/discount"
@@ -9,6 +8,7 @@ import (
 	"github.com/Lgdev07/ecommerce_app/apps/ecommerce/schema"
 	"github.com/Lgdev07/ecommerce_app/apps/ecommerce/usecase"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/gommon/log"
 )
 
 type CheckoutHandler struct {
@@ -18,13 +18,13 @@ type CheckoutHandler struct {
 func (f *CheckoutHandler) Products(c echo.Context) error {
 	checkout := &schema.CheckoutRequest{}
 	if err := c.Bind(checkout); err != nil {
-		log.Fatal(err)
+		log.Error(err)
 		return c.JSON(http.StatusBadRequest, "an error occurred when decoding the request body")
 	}
 
 	result, err := f.CheckoutUseCase.CalculateProducts(*checkout)
 	if err != nil {
-		log.Fatal(err)
+		log.Error(err)
 		return c.JSON(http.StatusInternalServerError, "an error occurred during execution")
 	}
 
