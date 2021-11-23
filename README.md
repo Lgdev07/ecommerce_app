@@ -6,7 +6,7 @@
   EcommerceApp Server
 </h3>
 
-<p align="center">Api to serve correios services in a easy way 📖</p>
+<p align="center">A checkout functionality for an ecommerce application 📖</p>
 <p align="center">Made with Golang 🚀</p>
 
 <p align="center">
@@ -37,7 +37,7 @@
 
 1. Rename `.env_sample` to `.env`;
 1. Run `docker-compose up`;
-2. Make the Requests;
+2. Make the Requests to `http://localhost:8080`;
 
 <h4> 🧪 Tests </h4>
 
