@@ -67,10 +67,18 @@ func (c *CheckoutUseCase) CalculateProducts(checkoutRequest schema.CheckoutReque
 			IsGift:        gift.IsGift,
 		}
 
+		if err := giftResponse.IsValid(); err != nil {
+			return checkout, err
+		}
+
 		checkout.Products = append(checkout.Products, giftResponse)
 	}
 
 	checkout.TotalAmountWithDiscount = checkout.TotalAmount - checkout.TotalDiscount
+
+	if err := checkout.IsValid(); err != nil {
+		return checkout, err
+	}
 
 	return checkout, nil
 }
